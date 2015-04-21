@@ -57,6 +57,8 @@
         NSString *string = [NSString stringWithFormat:@"%d", i];
         [_testArray[i % _sections.count] addObject:string];
     }
+    
+    self.cellDisplaying = NO;//add by JaverC
 }
 
 #pragma mark UITableViewDataSource
@@ -207,12 +209,17 @@
     switch (state) {
         case 0:
             NSLog(@"utility buttons closed");
+            self.cellDisplaying = NO;//add by JaverC
             break;
         case 1:
             NSLog(@"left utility buttons open");
+            _cellDisplayingUtilityButtons = cell;//add by JaverC
+            self.cellDisplaying = YES;//add by JaverC
             break;
         case 2:
             NSLog(@"right utility buttons open");
+            _cellDisplayingUtilityButtons = cell;//add by JaverC
+            self.cellDisplaying = YES;//add by JaverC
             break;
         default:
             break;
@@ -236,6 +243,10 @@
         default:
             break;
     }
+    
+    
+    //when buttons pressed, use 'hideUtilityButtonsAnimated' to remove the overlayView from superview
+    [cell hideUtilityButtonsAnimated:YES];//add by JaverC
 }
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
@@ -247,7 +258,6 @@
             UIAlertView *alertTest = [[UIAlertView alloc] initWithTitle:@"Hello" message:@"More more more" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles: nil];
             [alertTest show];
             
-            [cell hideUtilityButtonsAnimated:YES];
             break;
         }
         case 1:
@@ -262,6 +272,10 @@
         default:
             break;
     }
+    
+    
+    //when buttons pressed, use 'hideUtilityButtonsAnimated' to remove the overlayView from superview
+    [cell hideUtilityButtonsAnimated:YES];//add by JaverC
 }
 
 - (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
@@ -286,6 +300,48 @@
     }
     
     return YES;
+}
+
+
+/*
+ * add by JaverC
+ */
+- (void)setCellDisplaying:(BOOL)cellDisplaying{
+    if(_cellDisplaying != cellDisplaying){
+        _cellDisplaying = cellDisplaying;
+        if(cellDisplaying){
+            if(!_overlayView){
+                _overlayView = [[JCOverlayView alloc] initWithFrame:self.view.bounds];
+                _overlayView.backgroundColor = [UIColor clearColor];
+                _overlayView.delegate = self;
+            }
+            _overlayView.frame = self.view.bounds;
+            [self.view addSubview:_overlayView];
+        }
+        if(_shouldInterceptTouches){
+            _cellDisplayingUtilityButtons = nil;
+            [_overlayView removeFromSuperview];
+            _shouldInterceptTouches = NO;
+        }
+    }else{
+        _cellDisplayingUtilityButtons = nil;
+        [_overlayView removeFromSuperview];
+    }
+}
+
+#pragma mark - JCOverlayView
+/*
+ * add by JaverC
+ */
+- (UIView *)overlayView:(JCOverlayView *)view didHitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    _shouldInterceptTouches = YES;
+    CGPoint location = [self.view convertPoint:point fromView:view];
+    CGRect rect = [self.view convertRect:_cellDisplayingUtilityButtons.frame toView:self.view];
+    _shouldInterceptTouches = CGRectContainsPoint(rect, location);
+    if(!_shouldInterceptTouches){
+        [_cellDisplayingUtilityButtons hideUtilityButtonsAnimated:YES];
+    }
+    return (_shouldInterceptTouches) ? [_cellDisplayingUtilityButtons hitTest:point withEvent:event] : view;
 }
 
 

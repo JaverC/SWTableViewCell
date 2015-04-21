@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A8DE6811AE6CD9F00EA75AF /* JCOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8DE6801AE6CD9F00EA75AF /* JCOverlayView.m */; };
 		810308911846579B00C378F0 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 810308861846579B00C378F0 /* NSMutableArray+SWUtilityButtons.m */; };
 		810308921846579B00C378F0 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 810308881846579B00C378F0 /* SWCellScrollView.m */; };
 		810308931846579B00C378F0 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103088A1846579B00C378F0 /* SWLongPressGestureRecognizer.m */; };
@@ -34,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A8DE67F1AE6CD9F00EA75AF /* JCOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCOverlayView.h; sourceTree = "<group>"; };
+		4A8DE6801AE6CD9F00EA75AF /* JCOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCOverlayView.m; sourceTree = "<group>"; };
 		810308851846579B00C378F0 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
 		810308861846579B00C378F0 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
 		810308871846579B00C378F0 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
@@ -90,6 +93,8 @@
 		810308841846579B00C378F0 /* PodFiles */ = {
 			isa = PBXGroup;
 			children = (
+				4A8DE67F1AE6CD9F00EA75AF /* JCOverlayView.h */,
+				4A8DE6801AE6CD9F00EA75AF /* JCOverlayView.m */,
 				810308851846579B00C378F0 /* NSMutableArray+SWUtilityButtons.h */,
 				810308861846579B00C378F0 /* NSMutableArray+SWUtilityButtons.m */,
 				810308871846579B00C378F0 /* SWCellScrollView.h */,
@@ -257,6 +262,7 @@
 				AF34B78517DEE2B800BD9082 /* ViewController.m in Sources */,
 				810308951846579B00C378F0 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				810308931846579B00C378F0 /* SWLongPressGestureRecognizer.m in Sources */,
+				4A8DE6811AE6CD9F00EA75AF /* JCOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

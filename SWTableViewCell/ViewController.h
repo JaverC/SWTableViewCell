@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
+#import "JCOverlayView.h"
 
-@interface ViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
+@interface ViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate, JCOverlayViewDelegate>
+
+
+/*
+ * add by JaverC
+ */
+@property (nonatomic, strong) SWTableViewCell *cellDisplayingUtilityButtons;
+@property (nonatomic, strong) JCOverlayView *overlayView;
+@property (nonatomic, assign) BOOL cellDisplaying;
+@property (nonatomic, assign) BOOL shouldInterceptTouches;
 
 @end
